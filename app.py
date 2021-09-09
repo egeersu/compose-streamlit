@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import base64
+from bokeh.models.widgets import Div
 
 
 st.header('Building a Customizable Virtual Environment for Studying Human Compositional Generalization')
@@ -16,8 +17,12 @@ st.markdown("""
 * **Dissertation: ** [PDF](https://egeersu.github.io/papers/dissertation.pdf)
 """)
 
-if st.button('LAUNCH ENVIRONMENT'):
-    webbrowser.open_new_tab('https://romantic-sinoussi-657706.netlify.app/')
+if st.button('Launch Environment'):
+    js = "window.open('https://romantic-sinoussi-657706.netlify.app/')"  # New tab or window
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
+
 
 winners_df = pd.read_csv('data/winners.csv')
 craft_df = pd.read_csv('data/crafting.csv')
@@ -49,6 +54,7 @@ selected_df = craft_df[craft_df['Group'].isin(selected_groups) & craft_df['Day']
 
 st.header('Explore Our Data')
 st.write('Displaying ', selected_df.shape[0], 'attempts from ', len(selected_df['ID'].unique()), ' unique participants.')
+selected_df.rename(columns={'ID':'PlayerID'}, inplace=True)
 st.dataframe(selected_df)
 
 def filedownload(df):
