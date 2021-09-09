@@ -6,6 +6,9 @@ import numpy as np
 import seaborn as sns
 import base64
 from bokeh.models.widgets import Div
+from PIL import Image
+
+st.set_page_config(page_title='compose.io', page_icon = Image.open('run.png'), layout = 'wide', initial_sidebar_state = 'auto')
 
 
 st.header('Building a Customizable Virtual Environment for Studying Human Compositional Generalization')
