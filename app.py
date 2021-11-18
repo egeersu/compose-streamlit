@@ -26,6 +26,13 @@ if st.button('Launch Environment'):
     div = Div(text=html)
     st.bokeh_chart(div)
 
+if st.button('Codebase'):
+    js = "window.open('https://github.com/egeersu/compose-io')"  # New tab or window
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
+
+    
 
 winners_df = pd.read_csv('data/winners.csv')
 craft_df = pd.read_csv('data/crafting.csv')
